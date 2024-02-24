@@ -11,8 +11,6 @@ public class Tower : MonoBehaviour
     public int FloorCount = 15;
     public int PlayableFloors = 8;
     public float SpecialTileChance = 0.1f;
-    public TowerTile TilePrefab;
-    public TowerTile[] SpecialTilePrefabs;
     public bool BuildOnStart = true;
 
     [Header("Scene")]
@@ -48,10 +46,13 @@ public class Tower : MonoBehaviour
             for (int i = 0; i < TileCountPerFloor; i++) {
                 Quaternion direction = Quaternion.AngleAxis(angleStep * i, Vector3.up) * floorRotation;
                 Vector3 position = transform.position + Vector3.up * y * TileHeight + direction * Vector3.forward * towerRadius;
-                TowerTile tileInstance = Instantiate(Random.value > SpecialTileChance ? TilePrefab : SpecialTilePrefabs[Random.Range(0, SpecialTilePrefabs.Length)], position, direction * TilePrefab.transform.rotation, transform);
+                TowerTile tileInstance = (Random.value > SpecialTileChance) ? PoolSystem.Instance.GetTile() : PoolSystem.Instance.GetSpecialTile(Random.Range(0, PoolSystem.Instance.GetSpecialTilesCount()));
+                tileInstance.transform.position = position;
+                tileInstance.transform.rotation = direction * PoolSystem.Instance.GetTilePrefabRotation();
                 tileInstance.SetColorIndex(Mathf.FloorToInt(Random.value * TileColorManager.Instance.ColorCount));
                 tileInstance.SetFreezed(true);
                 tileInstance.Floor = y;
+                tileInstance.OnTileDestroyed = null;
                 tileInstance.OnTileDestroyed += OnTileDestroyedCallback;
                 tileInstance.OnTileDestroyed += OnTileDestroyed;
                 tilesByFloor[y].Add(tileInstance);
@@ -73,7 +74,7 @@ public class Tower : MonoBehaviour
             float maxHeight = 0;
             foreach (List<TowerTile> floor in tilesByFloor) {
                 foreach (TowerTile t in floor) {
-                    if (t != null)
+                    if (t != null && t.gameObject.activeSelf)
                         maxHeight = Mathf.Max(t.transform.position.y, maxHeight);
                 }
             }
@@ -133,5 +134,5 @@ public class Tower : MonoBehaviour
             }
         }
     }
-
+        
 }

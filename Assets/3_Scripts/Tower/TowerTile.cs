@@ -27,6 +27,8 @@ public class TowerTile : MonoBehaviour
     public System.Action<TowerTile> OnTileDestroyed;
     public bool Active { get; protected set; }
 
+    public PoolSystem.TilePool OwnerPool;
+
     List<TowerTile> connectedTiles = new List<TowerTile>();
     float nextCheckTime = 0;
     private bool drifting;
@@ -154,6 +156,14 @@ public class TowerTile : MonoBehaviour
             ParticleSystem.MainModule main = fx.main;
             main.startColor = TileColorManager.Instance.GetColor(ColorIndex);
         }
-        Destroy(gameObject);
+        if (OwnerPool != null)
+        {
+            PoolSystem.Instance.DisposeTile(this, OwnerPool);
+            OnTileDestroyed = null;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
