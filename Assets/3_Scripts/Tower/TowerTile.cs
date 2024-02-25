@@ -160,10 +160,16 @@ public class TowerTile : MonoBehaviour
         {
             PoolSystem.Instance.DisposeTile(this, OwnerPool);
             OnTileDestroyed = null;
+            ClearConnectedTiles();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ClearConnectedTiles()
+    {
+        connectedTiles.Clear();
     }
 }
