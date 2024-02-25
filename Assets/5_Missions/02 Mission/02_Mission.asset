@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fc0710fd79fd843a291c3bc47797f5, type: 3}
+  m_Name: 02_Mission
+  m_EditorClassIdentifier: 
+  _id: c48e23a0-25ff-4073-9117-d608536104fa
+  title: Be careful with the spark
+  difficulty: 1
+  steps:
+  - {fileID: 11400000, guid: 701eaba6e1ee7df4496409479e809329, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 198a3f3973e6d9e45bbe5d70d99b18ac, type: 2}

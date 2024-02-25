@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainAtlas
+  m_Name: MissionsAtlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -44,31 +44,17 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: 08a729c1f898a584591f7d1fcd36776b, type: 3}
+    - {fileID: 102900000, guid: 80ae252b1d673bf438686007e6e4f1f9, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 5b17af609693e5043909a39af2562f45, type: 3}
-  - {fileID: 21300000, guid: fc9461647ccfcb74599894fa38cae5e0, type: 3}
-  - {fileID: 21300000, guid: 40ee5035ca44d29499587ae873ccf91f, type: 3}
-  - {fileID: 21300000, guid: 805c952828626d6429228839b8197da2, type: 3}
-  - {fileID: 21300000, guid: ce59c0fb95280884bb5755db6b9ac64c, type: 3}
-  - {fileID: 21300000, guid: 3db1cd9c099ac0141969487ca105dbe0, type: 3}
-  - {fileID: 21300000, guid: 1881d50d27ba1e84280ec37f3675c0af, type: 3}
-  - {fileID: 21300000, guid: 8eff7f7ddab8e044495d9ef57d8e388c, type: 3}
-  - {fileID: 21300000, guid: 61ecdded871dc5c4b9de3ce27684988f, type: 3}
+  - {fileID: 21300000, guid: f8d3ba80d1d951c4e8956ef4484e9e20, type: 3}
+  - {fileID: 21300000, guid: 15ebb77cbeab20d46a0696f0eccf2766, type: 3}
   m_PackedSpriteNamesToIndex:
-  - slider-border
-  - eye-open
-  - slider-handle
-  - smartphone-vibration
-  - eye-close
-  - settings
-  - smartphone
-  - slider-fill
-  - fill-circle
+  - star
+  - task
   m_RenderDataMap: {}
-  m_Tag: MainAtlas
+  m_Tag: MissionsAtlas
   m_IsVariant: 0

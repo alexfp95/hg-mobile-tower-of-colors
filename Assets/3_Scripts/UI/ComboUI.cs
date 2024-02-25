@@ -84,4 +84,9 @@ public class ComboUI : MonoBehaviour
         currentCombo = 0;
         resetComboRoutine = null;
     }
+
+    public int GetCurrentCombo()
+    {
+        return currentCombo;
+    }
 }

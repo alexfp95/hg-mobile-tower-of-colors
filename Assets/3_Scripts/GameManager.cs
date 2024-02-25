@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum GameState
+public enum GameState
 {
     Intro = 0,
     Playing = 1,
@@ -49,7 +49,10 @@ public class GameManager : Singleton<GameManager>
     int tileCount;
     int destroyedTileCount;
     int ballCount;
+    int explotionCount;
     GameState gameState = GameState.Intro;
+
+    public System.Action ActionPerformed;
 
     private void Awake()
     {
@@ -74,6 +77,7 @@ public class GameManager : Singleton<GameManager>
         ballCount = Mathf.FloorToInt(ballToTileRatioPerLevel.Evaluate(SaveData.CurrentLevel) * tileCount);
         ballCountText.text = ballCount.ToString("N0");
         ballShooter.OnBallShot += OnBallShot;
+        explotionCount = 0;
 
         percentCounter.SetColor(TileColorManager.Instance.GetColor(Mathf.FloorToInt(Random.value * TileColorManager.Instance.ColorCount)));
         percentCounter.SetLevel(SaveData.CurrentLevel);
@@ -101,6 +105,11 @@ public class GameManager : Singleton<GameManager>
         animator.SetInteger("GameState", (int)state);
     }
 
+    public bool IsGameState(GameState state)
+    {
+        return gameState == state;
+    }
+
     public void OnTileDestroyed(TowerTile tile)
     {
         if (gameState == GameState.Playing || gameState == GameState.WaitingLose) {
@@ -117,6 +126,11 @@ public class GameManager : Singleton<GameManager>
                 if (SaveData.VibrationEnabled == 1)
                     Handheld.Vibrate();
             }
+            if (tile as ExplodingTile != null)
+            {
+                explotionCount++;
+            }
+            ActionPerformed?.Invoke();
         }
     }
 
@@ -126,4 +140,13 @@ public class GameManager : Singleton<GameManager>
         tower.StartGame();
     }
 
+    public int GetCurrentCombo()
+    {
+        return comboUI.GetCurrentCombo();
+    }
+
+    public int GetExplosionCount()
+    {
+        return explotionCount;
+    }
 }

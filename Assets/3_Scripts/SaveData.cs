@@ -42,4 +42,27 @@ public static class SaveData
             PlayerPrefs.SetInt("VibrationEnabled", value);
         }
     }
+
+    public static bool IsMissionCompleted(string id)
+    {
+        return PlayerPrefs.GetInt(id, 0) != 0;
+    }
+
+    public static void SetMissionCompleted(string id, bool state)
+    {
+        PlayerPrefs.SetInt(id, state ? 1 : 0);
+    }
+
+    public static int Stars
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("Stars", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("Stars", value);
+        }
+    }
+
 }
